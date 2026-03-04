@@ -35,17 +35,19 @@ CREATE TABLE resumes (
     id_candidate INTEGER NOT NULL,
     id_position INTEGER NOT NULL,
     id_employment_type INTEGER NOT NULL,
+    id_experience INTEGER NOT NULL,
     description text,
     working_hours INTEGER NOT NULL,
     compensation_from DECIMAL(10, 2) NOT NULL,
     created_date DATE NOT NULL,
     FOREIGN KEY (id_position) REFERENCES positions(id),
     FOREIGN KEY (id_employment_type) REFERENCES employments(id),
-    FOREIGN KEY (id_work_format) REFERENCES work_formats(id)
+    FOREIGN KEY (id_work_format) REFERENCES work_formats(id),
+    FOREIGN KEY (id_experience) REFERENCES experience(id)
 );
 
 CREATE TABLE resume_skills (
-    id INTEGER GENERATED ALWAYS AS IDENTITY,
+    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     id_resume INTEGER,
     id_skill INTEGER,
     FOREIGN KEY (id_skill) REFERENCES skills(id),
@@ -58,19 +60,21 @@ CREATE TABLE vacancies (
     id_company INTEGER NOT NULL,
     id_work_format INTEGER NOT NULL,
     id_position INTEGER NOT NULL,
+    id_experience INTEGER NOT NULL,
     title VARCHAR(255) NOT NULL,
     description text,
-    compensation_from DECIMAL(10, 2) NOT NULL,
-    compensation_to DECIMAL(10, 2) NOT NULL,
-    work_hours INTEGER NOT NULL,
+    compensation_from INTEGER NOT NULL,
+    compensation_to INTEGER NOT NULL,
+    working_hours INTEGER NOT NULL,
     created_date DATE NOT NULL,
     FOREIGN KEY (id_area) REFERENCES areas(id),
     FOREIGN KEY (id_work_format) REFERENCES work_formats(id),
-    FOREIGN KEY (id_position) REFERENCES positions(id)
+    FOREIGN KEY (id_position) REFERENCES positions(id),
+    FOREIGN KEY (id_experience) REFERENCES experience(id)
 );
 
 CREATE TABLE vacancy_skills (
-    id INTEGER GENERATED ALWAYS AS IDENTITY,
+    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     id_vacancy INTEGER,
     id_skill INTEGER,
     FOREIGN KEY (id_skill) REFERENCES skills(id),

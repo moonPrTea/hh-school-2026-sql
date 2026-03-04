@@ -20,3 +20,4 @@ UNION
           EXTRACT(YEAR FROM resumes.created_date)
  ORDER BY count_resumes DESC
  limit 1);
+ 
